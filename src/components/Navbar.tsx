@@ -11,11 +11,6 @@ const navItems = [
   { to: "/about", label: "About" },
 ]
 
-function navLinkClassName(isActive: boolean) {
-  return isActive
-    ? "text-foreground"
-    : "text-muted-foreground transition hover:text-foreground"
-}
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)

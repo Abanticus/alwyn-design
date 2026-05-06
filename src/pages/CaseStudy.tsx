@@ -158,7 +158,7 @@ function CaseStudy() {
         ) : (
           <section className="rounded-2xl border border-border bg-card p-6">
             <h1 className="text-4xl font-medium tracking-tight sm:text-5xl">
-              {caseStudy?.title ?? "Case Study Not Found"}
+              Case Study Not Found
             </h1>
             <p className="leading-7 text-muted-foreground">
               No case study matches this slug yet. Add it to the shared
