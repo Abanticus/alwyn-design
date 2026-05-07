@@ -4,12 +4,12 @@ import { Route, Routes } from "react-router-dom"
 // import About from "./pages/About"
 // import CaseStudy from "./pages/CaseStudy"
 // import Home from "./pages/Home"
+
 import HoldingPage from "./pages/HoldingPage"
 
 function App() {
   return (
     <Routes>
-      {/* Holding page — swap back to the AppLayout block below when portfolio is ready */}
       <Route path="/" element={<HoldingPage />} />
 
       {/* Full portfolio routes — uncomment when ready

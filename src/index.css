@@ -85,7 +85,7 @@
 
 .dark {
     --background: oklch(0.141 0.005 285.823);
-    --foreground: oklch(0.985 0 0);
+    --foreground: oklch(98.511% 0.00011 271.152);
     --card: oklch(0.21 0.006 285.885);
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.21 0.006 285.885);
@@ -134,7 +134,95 @@
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
   }
+  @keyframes tactical-draw {
+    0%, 10% {
+      opacity: 0;
+      stroke-dashoffset: 1;
+    }
+    32%, 68% {
+      opacity: 0.68;
+      stroke-dashoffset: 0;
+    }
+    100% {
+      opacity: 0;
+      stroke-dashoffset: -1;
+    }
+  }
+  @keyframes tactical-trail {
+    from { stroke-dashoffset: 1; }
+    to   { stroke-dashoffset: 0; }
+  }
+  @keyframes tactical-node {
+    0%, 100% {
+      opacity: 0.62;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  @keyframes tactical-event {
+    0%, 72%, 100% {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    82% {
+      opacity: 0.9;
+      transform: scale(1.55);
+    }
+    92% {
+      opacity: 0.38;
+      transform: scale(1);
+    }
+  }
   .animate-spin-asterisk {
     animation: spin-asterisk 8s linear infinite;
+  }
+  .tactical-flow {
+    animation: tactical-draw 7.5s ease-in-out infinite;
+    opacity: 0;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  .tactical-flow-delay-1 {
+    animation-delay: 1s;
+  }
+  .tactical-flow-delay-2 {
+    animation-delay: 2s;
+  }
+  .tactical-flow-delay-3 {
+    animation-delay: 3s;
+  }
+  .tactical-flow-delay-4 {
+    animation-delay: 4s;
+  }
+  .tactical-trail {
+    animation: tactical-trail 8s linear infinite;
+    stroke-dasharray: 0.08 0.08;
+  }
+  .tactical-node {
+    animation: tactical-node 4.8s ease-in-out infinite;
+  }
+  .tactical-event {
+    animation: tactical-event 6s ease-in-out infinite;
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-spin-asterisk,
+    .tactical-flow,
+    .tactical-trail,
+    .tactical-node,
+    .tactical-event {
+      animation: none;
+    }
+    .tactical-flow {
+      opacity: 0.36;
+      stroke-dashoffset: 0;
+    }
+    .tactical-event,
+    .tactical-node {
+      opacity: 0.72;
+    }
   }
 }
