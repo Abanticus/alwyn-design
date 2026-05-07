@@ -1,23 +1,293 @@
-const playerNodes = [
-  { cx: 240, cy: 380, delay: "0s" },
-  { cx: 380, cy: 190, delay: "0.4s" },
-  { cx: 420, cy: 560, delay: "0.8s" },
-  { cx: 570, cy: 300, delay: "1.2s" },
-  { cx: 600, cy: 470, delay: "1.6s" },
-  { cx: 760, cy: 220, delay: "2s" },
-  { cx: 820, cy: 400, delay: "2.4s" },
-  { cx: 940, cy: 330, delay: "2.8s" },
+import { useEffect, useState } from "react"
+
+const motionKeyTimes = "0;0.18;0.38;0.62;0.82;1"
+const motionKeySplines = [
+  "0.42 0 0.58 1",
+  "0.4 0 0.2 1",
+  "0.45 0 0.55 1",
+  "0.2 0 0.2 1",
+  "0.42 0 0.58 1",
+].join(";")
+
+const trackingPlayers = [
+  {
+    id: "home-keeper",
+    x: [190, 205, 214, 202, 186, 190],
+    y: [380, 356, 392, 416, 398, 380],
+    duration: "18s",
+    delay: "-4s",
+    radius: 1.45,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
+  {
+    id: "home-left-back",
+    x: [320, 360, 405, 380, 335, 320],
+    y: [160, 138, 172, 228, 210, 160],
+    duration: "24s",
+    delay: "-16s",
+    radius: 1.35,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
+  {
+    id: "home-left-centre-back",
+    x: [330, 360, 395, 368, 340, 330],
+    y: [280, 245, 272, 325, 318, 280],
+    duration: "22s",
+    delay: "-11s",
+    radius: 1.65,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "home-right-centre-back",
+    x: [350, 388, 420, 390, 346, 350],
+    y: [485, 525, 498, 438, 452, 485],
+    duration: "20s",
+    delay: "-6s",
+    radius: 1.65,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "home-right-back",
+    x: [320, 370, 412, 388, 335, 320],
+    y: [600, 630, 588, 528, 548, 600],
+    duration: "23s",
+    delay: "-14s",
+    radius: 1.35,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
+  {
+    id: "home-six",
+    x: [500, 548, 600, 570, 520, 500],
+    y: [380, 338, 370, 426, 445, 380],
+    duration: "16s",
+    delay: "-2s",
+    radius: 1.75,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
+  {
+    id: "home-left-eight",
+    x: [610, 665, 715, 690, 635, 610],
+    y: [265, 220, 250, 320, 335, 265],
+    duration: "19s",
+    delay: "-13s",
+    radius: 1.65,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "home-right-eight",
+    x: [625, 700, 755, 725, 660, 625],
+    y: [510, 535, 492, 430, 452, 510],
+    duration: "21s",
+    delay: "-8s",
+    radius: 1.65,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "home-left-wing",
+    x: [820, 875, 960, 1030, 950, 820],
+    y: [180, 155, 205, 275, 300, 180],
+    duration: "24s",
+    delay: "-17s",
+    radius: 1.55,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
+  {
+    id: "home-nine",
+    x: [855, 905, 980, 1035, 975, 855],
+    y: [382, 330, 362, 410, 452, 382],
+    duration: "18s",
+    delay: "-5s",
+    radius: 1.85,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "home-right-wing",
+    x: [805, 858, 940, 1015, 930, 805],
+    y: [575, 610, 560, 485, 455, 575],
+    duration: "23s",
+    delay: "-14s",
+    radius: 1.55,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
+  {
+    id: "away-keeper",
+    x: [1010, 996, 988, 1002, 1018, 1010],
+    y: [380, 404, 368, 344, 362, 380],
+    duration: "19s",
+    delay: "-9s",
+    radius: 1.45,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
+  {
+    id: "away-left-back",
+    x: [880, 830, 790, 812, 865, 880],
+    y: [600, 632, 590, 530, 548, 600],
+    duration: "25s",
+    delay: "-18s",
+    radius: 1.35,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
+  {
+    id: "away-left-centre-back",
+    x: [865, 824, 785, 814, 858, 865],
+    y: [485, 528, 498, 438, 452, 485],
+    duration: "20s",
+    delay: "-5s",
+    radius: 1.65,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "away-right-centre-back",
+    x: [850, 812, 780, 810, 854, 850],
+    y: [280, 245, 272, 325, 318, 280],
+    duration: "22s",
+    delay: "-12s",
+    radius: 1.65,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "away-right-back",
+    x: [880, 836, 795, 820, 866, 880],
+    y: [160, 138, 174, 228, 208, 160],
+    duration: "24s",
+    delay: "-15s",
+    radius: 1.35,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
+  {
+    id: "away-six",
+    x: [700, 652, 600, 630, 680, 700],
+    y: [380, 422, 390, 334, 315, 380],
+    duration: "17s",
+    delay: "-1s",
+    radius: 1.75,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
+  {
+    id: "away-left-eight",
+    x: [590, 535, 485, 510, 565, 590],
+    y: [510, 540, 492, 430, 452, 510],
+    duration: "20s",
+    delay: "-7s",
+    radius: 1.65,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "away-right-eight",
+    x: [575, 500, 445, 475, 540, 575],
+    y: [265, 225, 268, 330, 308, 265],
+    duration: "21s",
+    delay: "-13s",
+    radius: 1.65,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "away-left-wing",
+    x: [395, 342, 260, 185, 270, 395],
+    y: [575, 610, 558, 488, 454, 575],
+    duration: "23s",
+    delay: "-17s",
+    radius: 1.55,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
+  {
+    id: "away-nine",
+    x: [345, 295, 220, 165, 225, 345],
+    y: [382, 430, 398, 350, 308, 382],
+    duration: "18s",
+    delay: "-6s",
+    radius: 1.85,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "away-right-wing",
+    x: [380, 324, 242, 170, 252, 380],
+    y: [180, 150, 205, 276, 300, 180],
+    duration: "24s",
+    delay: "-20s",
+    radius: 1.55,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
 ]
 
-const eventTicks = [
-  { cx: 320, cy: 465, delay: "0.2s" },
-  { cx: 500, cy: 220, delay: "1.4s" },
-  { cx: 690, cy: 535, delay: "2.6s" },
-  { cx: 865, cy: 275, delay: "3.8s" },
-  { cx: 1015, cy: 420, delay: "5s" },
+const homeConnections = [
+  [0, 2],
+  [0, 3],
+  [1, 2],
+  [2, 5],
+  [3, 5],
+  [3, 4],
+  [5, 6],
+  [5, 7],
+  [6, 8],
+  [6, 9],
+  [7, 9],
+  [7, 10],
+  [8, 9],
+  [9, 10],
 ]
+
+const awayConnections = homeConnections.map(([from, to]) => [from + 11, to + 11])
+
+const trackingConnections = [
+  ...homeConnections,
+  ...awayConnections,
+  [5, 16],
+  [6, 17],
+  [7, 16],
+  [9, 20],
+]
+
+function values(points: number[]) {
+  return points.join(";")
+}
+
+function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
+    if (typeof window === "undefined") return false
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  })
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const onChange = () => setPrefersReducedMotion(mediaQuery.matches)
+
+    onChange()
+    mediaQuery.addEventListener("change", onChange)
+    return () => mediaQuery.removeEventListener("change", onChange)
+  }, [])
+
+  return prefersReducedMotion
+}
+
+function Motion({
+  attributeName,
+  delay,
+  duration,
+  points,
+}: {
+  attributeName: "cx" | "cy" | "x1" | "y1" | "x2" | "y2"
+  delay: string
+  duration: string
+  points: number[]
+}) {
+  return (
+    <animate
+      attributeName={attributeName}
+      begin={delay}
+      calcMode="spline"
+      dur={duration}
+      keySplines={motionKeySplines}
+      keyTimes={motionKeyTimes}
+      repeatCount="indefinite"
+      values={values(points)}
+    />
+  )
+}
 
 export function TacticalPitchBackground() {
+  const prefersReducedMotion = usePrefersReducedMotion()
+
   return (
     <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(140deg,oklch(0.141_0.005_285.823)_0%,oklch(0.18_0.032_265)_48%,oklch(0.105_0.006_286)_100%)]" />
@@ -27,173 +297,152 @@ export function TacticalPitchBackground() {
         role="presentation"
       >
         <defs>
-          <pattern
-            id="pitch-grid"
-            width="40"
-            height="40"
-            patternUnits="userSpaceOnUse"
-          >
-            <path
-              d="M40 0H0V40"
-              fill="none"
-              stroke="currentColor"
-              strokeOpacity="0.08"
-              strokeWidth="1"
-            />
-          </pattern>
           <filter id="data-glow" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feGaussianBlur stdDeviation="3" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-          <marker
-            id="arrow-head"
-            markerHeight="8"
-            markerWidth="8"
-            orient="auto"
-            refX="6"
-            refY="4"
-            viewBox="0 0 8 8"
-          >
-            <path d="M0 0L8 4L0 8Z" fill="var(--primary)" opacity="0.62" />
-          </marker>
         </defs>
-
-        <g className="text-primary-foreground/60">
-          <rect
-            x="80"
-            y="70"
-            width="1040"
-            height="620"
-            fill="url(#pitch-grid)"
-            opacity="0.32"
-          />
-        </g>
 
         <g
           fill="none"
-          stroke="oklch(0.97 0.014 254.604 / 0.15)"
+          stroke="oklch(0.809 0.105 251.813 / 0.2)"
           strokeWidth="2"
         >
           <rect x="80" y="70" width="1040" height="620" rx="6" />
           <path d="M600 70V690" />
           <circle cx="600" cy="380" r="92" />
-          <circle cx="600" cy="380" r="4" fill="currentColor" opacity="0.35" />
+          <circle
+            cx="600"
+            cy="380"
+            r="4"
+            fill="oklch(0.809 0.105 251.813)"
+            opacity="0.26"
+          />
 
           <path d="M80 230H238V530H80" />
           <path d="M80 300H142V460H80" />
-          <circle cx="198" cy="380" r="4" fill="currentColor" opacity="0.3" />
+          <circle
+            cx="198"
+            cy="380"
+            r="4"
+            fill="oklch(0.809 0.105 251.813)"
+            opacity="0.24"
+          />
           <path d="M238 286a118 118 0 0 1 0 188" />
 
           <path d="M1120 230H962V530H1120" />
           <path d="M1120 300H1058V460H1120" />
-          <circle cx="1002" cy="380" r="4" fill="currentColor" opacity="0.3" />
+          <circle
+            cx="1002"
+            cy="380"
+            r="4"
+            fill="oklch(0.809 0.105 251.813)"
+            opacity="0.24"
+          />
           <path d="M962 286a118 118 0 0 0 0 188" />
 
-          <path d="M80 170H1120" strokeDasharray="6 18" opacity="0.45" />
-          <path d="M80 590H1120" strokeDasharray="6 18" opacity="0.45" />
-          <path d="M340 70V690" strokeDasharray="8 18" opacity="0.4" />
-          <path d="M860 70V690" strokeDasharray="8 18" opacity="0.4" />
-        </g>
-
-        <g
-          fill="none"
-          filter="url(#data-glow)"
-          markerEnd="url(#arrow-head)"
-          stroke="var(--primary)"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="3"
-        >
-          <path
-            className="tactical-flow"
-            d="M240 380C310 300 330 230 380 190"
-            pathLength="1"
-          />
-          <path
-            className="tactical-flow tactical-flow-delay-1"
-            d="M380 190C505 168 650 170 760 220"
-            pathLength="1"
-          />
-          <path
-            className="tactical-flow tactical-flow-delay-2"
-            d="M420 560C520 490 640 465 820 400"
-            pathLength="1"
-          />
-          <path
-            className="tactical-flow tactical-flow-delay-3"
-            d="M570 300C660 345 720 375 820 400"
-            pathLength="1"
-          />
-          <path
-            className="tactical-flow tactical-flow-delay-4"
-            d="M820 400C875 365 900 345 940 330"
-            pathLength="1"
-          />
-        </g>
-
-        <g
-          fill="none"
-          stroke="oklch(0.809 0.105 251.813 / 0.44)"
-          strokeLinecap="round"
-          strokeWidth="2"
-        >
-          <path
-            className="tactical-trail"
-            d="M500 220C545 255 570 280 570 300"
-            pathLength="1"
-          />
-          <path
-            className="tactical-trail tactical-flow-delay-2"
-            d="M690 535C640 510 610 490 600 470"
-            pathLength="1"
-          />
-          <path
-            className="tactical-trail tactical-flow-delay-3"
-            d="M865 275C900 290 925 310 940 330"
-            pathLength="1"
-          />
         </g>
 
         <g filter="url(#data-glow)">
-          {playerNodes.map(({ cx, cy, delay }) => (
-            <g
-              key={`${cx}-${cy}`}
-              className="tactical-node"
-              style={{ animationDelay: delay }}
-            >
-              <circle
-                cx={cx}
-                cy={cy}
-                r="16"
-                fill="var(--primary)"
-                opacity="0.13"
-              />
-              <circle cx={cx} cy={cy} r="5" fill="oklch(0.97 0.014 254.604)" />
-              <circle
-                cx={cx}
-                cy={cy}
-                r="8"
-                fill="none"
-                stroke="var(--primary)"
-                strokeWidth="2"
-              />
-            </g>
-          ))}
-        </g>
+          {trackingConnections.map(([fromIndex, toIndex]) => {
+            const from = trackingPlayers[fromIndex]!
+            const to = trackingPlayers[toIndex]!
 
-        <g fill="oklch(0.809 0.105 251.813)">
-          {eventTicks.map(({ cx, cy, delay }) => (
-            <circle
-              key={`${cx}-${cy}`}
-              className="tactical-event"
-              cx={cx}
-              cy={cy}
-              r="3"
-              style={{ animationDelay: delay }}
-            />
+            return (
+              <line
+                key={`${from.id}-${to.id}`}
+                className="tracking-connection"
+                x1={from.x[0]}
+                y1={from.y[0]}
+                x2={to.x[0]}
+                y2={to.y[0]}
+              >
+                {!prefersReducedMotion && (
+                  <>
+                    <Motion
+                      attributeName="x1"
+                      delay={from.delay}
+                      duration={from.duration}
+                      points={from.x}
+                    />
+                    <Motion
+                      attributeName="y1"
+                      delay={from.delay}
+                      duration={from.duration}
+                      points={from.y}
+                    />
+                    <Motion
+                      attributeName="x2"
+                      delay={to.delay}
+                      duration={to.duration}
+                      points={to.x}
+                    />
+                    <Motion
+                      attributeName="y2"
+                      delay={to.delay}
+                      duration={to.duration}
+                      points={to.y}
+                    />
+                  </>
+                )}
+              </line>
+            )
+          })}
+
+          {trackingPlayers.map((player) => (
+            <g key={player.id}>
+              <circle
+                className="tracking-dot-halo"
+                cx={player.x[0]}
+                cy={player.y[0]}
+                r={player.radius + 3.25}
+                fill={player.stroke}
+              >
+                {!prefersReducedMotion && (
+                  <>
+                    <Motion
+                      attributeName="cx"
+                      delay={player.delay}
+                      duration={player.duration}
+                      points={player.x}
+                    />
+                    <Motion
+                      attributeName="cy"
+                      delay={player.delay}
+                      duration={player.duration}
+                      points={player.y}
+                    />
+                  </>
+                )}
+              </circle>
+              <circle
+                className="tracking-dot-core"
+                cx={player.x[0]}
+                cy={player.y[0]}
+                r={player.radius}
+                fill={player.stroke}
+              >
+                {!prefersReducedMotion && (
+                  <>
+                    <Motion
+                      attributeName="cx"
+                      delay={player.delay}
+                      duration={player.duration}
+                      points={player.x}
+                    />
+                    <Motion
+                      attributeName="cy"
+                      delay={player.delay}
+                      duration={player.duration}
+                      points={player.y}
+                    />
+                  </>
+                )}
+              </circle>
+            </g>
           ))}
         </g>
       </svg>
