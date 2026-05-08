@@ -146,18 +146,24 @@
     animation: spin-asterisk 8s linear infinite;
   }
   .tracking-connection {
-    opacity: 0.15;
+    opacity: 0.12;
     stroke: oklch(0.809 0.105 251.813);
     stroke-linecap: round;
-    stroke-width: 1.1;
+    stroke-width: 0.75;
   }
   .tracking-dot-halo {
-    animation: tracking-dot-pulse 3.6s ease-in-out infinite;
+    animation: tracking-dot-pulse 5.2s ease-in-out infinite;
     opacity: 0.08;
   }
   .tracking-dot-core {
-    animation: tracking-dot-pulse 3.6s ease-in-out infinite;
+    animation: tracking-dot-pulse 5.2s ease-in-out infinite;
     opacity: 0.82;
+  }
+  .tracking-ball-halo {
+    opacity: 0.12;
+  }
+  .tracking-ball-core {
+    opacity: 0.92;
   }
   @media (prefers-reduced-motion: reduce) {
     .animate-spin-asterisk,

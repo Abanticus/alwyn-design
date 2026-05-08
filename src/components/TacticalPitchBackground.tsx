@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react"
 
-const motionKeyTimes = "0;0.18;0.38;0.62;0.82;1"
+const formationDuration = "34s"
+const formationDelay = "-4s"
+const homeTeamColor = "oklch(0.424 0.199 265.638)"
+const awayTeamColor = "oklch(0.809 0.105 251.813)"
+const motionKeyTimeValues = [0, 0.18, 0.38, 0.62, 0.82, 1]
+const motionKeyTimes = motionKeyTimeValues.join(";")
 const motionKeySplines = [
   "0.42 0 0.58 1",
   "0.4 0 0.2 1",
@@ -12,200 +17,200 @@ const motionKeySplines = [
 const trackingPlayers = [
   {
     id: "home-keeper",
-    x: [190, 205, 214, 202, 186, 190],
-    y: [380, 356, 392, 416, 398, 380],
-    duration: "18s",
+    x: [160, 168, 176, 170, 158, 160],
+    y: [380, 360, 382, 402, 394, 380],
+    duration: "24s",
     delay: "-4s",
     radius: 1.45,
     stroke: "oklch(0.809 0.105 251.813)",
   },
   {
     id: "home-left-back",
-    x: [320, 360, 405, 380, 335, 320],
-    y: [160, 138, 172, 228, 210, 160],
-    duration: "24s",
+    x: [330, 385, 445, 410, 350, 330],
+    y: [155, 128, 148, 205, 212, 155],
+    duration: "26s",
     delay: "-16s",
     radius: 1.35,
     stroke: "oklch(0.809 0.105 251.813)",
   },
   {
     id: "home-left-centre-back",
-    x: [330, 360, 395, 368, 340, 330],
-    y: [280, 245, 272, 325, 318, 280],
-    duration: "22s",
+    x: [315, 350, 390, 370, 332, 315],
+    y: [305, 282, 302, 338, 344, 305],
+    duration: "25s",
     delay: "-11s",
     radius: 1.65,
     stroke: "var(--primary)",
   },
   {
     id: "home-right-centre-back",
-    x: [350, 388, 420, 390, 346, 350],
-    y: [485, 525, 498, 438, 452, 485],
-    duration: "20s",
+    x: [315, 350, 392, 370, 330, 315],
+    y: [455, 478, 456, 420, 416, 455],
+    duration: "24s",
     delay: "-6s",
     radius: 1.65,
     stroke: "var(--primary)",
   },
   {
     id: "home-right-back",
-    x: [320, 370, 412, 388, 335, 320],
-    y: [600, 630, 588, 528, 548, 600],
-    duration: "23s",
+    x: [330, 390, 455, 420, 352, 330],
+    y: [605, 632, 610, 552, 548, 605],
+    duration: "27s",
     delay: "-14s",
     radius: 1.35,
     stroke: "oklch(0.809 0.105 251.813)",
   },
   {
-    id: "home-six",
-    x: [500, 548, 600, 570, 520, 500],
-    y: [380, 338, 370, 426, 445, 380],
-    duration: "16s",
+    id: "home-left-pivot",
+    x: [485, 532, 575, 548, 500, 485],
+    y: [322, 288, 318, 368, 370, 322],
+    duration: "21s",
     delay: "-2s",
     radius: 1.75,
     stroke: "oklch(0.809 0.105 251.813)",
   },
   {
-    id: "home-left-eight",
-    x: [610, 665, 715, 690, 635, 610],
-    y: [265, 220, 250, 320, 335, 265],
-    duration: "19s",
+    id: "home-right-pivot",
+    x: [500, 552, 602, 572, 512, 500],
+    y: [438, 470, 442, 390, 392, 438],
+    duration: "22s",
     delay: "-13s",
-    radius: 1.65,
-    stroke: "var(--primary)",
-  },
-  {
-    id: "home-right-eight",
-    x: [625, 700, 755, 725, 660, 625],
-    y: [510, 535, 492, 430, 452, 510],
-    duration: "21s",
-    delay: "-8s",
-    radius: 1.65,
-    stroke: "var(--primary)",
-  },
-  {
-    id: "home-left-wing",
-    x: [820, 875, 960, 1030, 950, 820],
-    y: [180, 155, 205, 275, 300, 180],
-    duration: "24s",
-    delay: "-17s",
-    radius: 1.55,
+    radius: 1.75,
     stroke: "oklch(0.809 0.105 251.813)",
   },
   {
-    id: "home-nine",
-    x: [855, 905, 980, 1035, 975, 855],
-    y: [382, 330, 362, 410, 452, 382],
-    duration: "18s",
+    id: "home-left-wing",
+    x: [695, 748, 818, 792, 724, 695],
+    y: [168, 142, 178, 236, 248, 168],
+    duration: "24s",
+    delay: "-8s",
+    radius: 1.55,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "home-ten",
+    x: [675, 735, 792, 760, 698, 675],
+    y: [380, 338, 374, 430, 424, 380],
+    duration: "19s",
     delay: "-5s",
-    radius: 1.85,
+    radius: 1.65,
     stroke: "var(--primary)",
   },
   {
     id: "home-right-wing",
-    x: [805, 858, 940, 1015, 930, 805],
-    y: [575, 610, 560, 485, 455, 575],
-    duration: "23s",
-    delay: "-14s",
+    x: [695, 750, 820, 790, 725, 695],
+    y: [592, 620, 580, 520, 512, 592],
+    duration: "24s",
+    delay: "-12s",
     radius: 1.55,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "home-nine",
+    x: [880, 925, 982, 952, 895, 880],
+    y: [380, 334, 366, 420, 440, 380],
+    duration: "18s",
+    delay: "-17s",
+    radius: 1.85,
     stroke: "oklch(0.809 0.105 251.813)",
   },
   {
     id: "away-keeper",
-    x: [1010, 996, 988, 1002, 1018, 1010],
-    y: [380, 404, 368, 344, 362, 380],
-    duration: "19s",
+    x: [1040, 1032, 1024, 1030, 1042, 1040],
+    y: [380, 400, 378, 358, 366, 380],
+    duration: "25s",
     delay: "-9s",
     radius: 1.45,
     stroke: "oklch(0.809 0.105 251.813)",
   },
   {
     id: "away-left-back",
-    x: [880, 830, 790, 812, 865, 880],
-    y: [600, 632, 590, 530, 548, 600],
-    duration: "25s",
+    x: [870, 810, 745, 780, 848, 870],
+    y: [605, 632, 610, 552, 548, 605],
+    duration: "27s",
     delay: "-18s",
     radius: 1.35,
     stroke: "oklch(0.809 0.105 251.813)",
   },
   {
     id: "away-left-centre-back",
-    x: [865, 824, 785, 814, 858, 865],
-    y: [485, 528, 498, 438, 452, 485],
-    duration: "20s",
+    x: [885, 850, 808, 830, 870, 885],
+    y: [455, 478, 456, 420, 416, 455],
+    duration: "24s",
     delay: "-5s",
     radius: 1.65,
     stroke: "var(--primary)",
   },
   {
     id: "away-right-centre-back",
-    x: [850, 812, 780, 810, 854, 850],
-    y: [280, 245, 272, 325, 318, 280],
-    duration: "22s",
+    x: [885, 850, 810, 830, 868, 885],
+    y: [305, 282, 302, 338, 344, 305],
+    duration: "25s",
     delay: "-12s",
     radius: 1.65,
     stroke: "var(--primary)",
   },
   {
     id: "away-right-back",
-    x: [880, 836, 795, 820, 866, 880],
-    y: [160, 138, 174, 228, 208, 160],
-    duration: "24s",
+    x: [870, 815, 755, 790, 850, 870],
+    y: [155, 128, 148, 205, 212, 155],
+    duration: "26s",
     delay: "-15s",
     radius: 1.35,
     stroke: "oklch(0.809 0.105 251.813)",
   },
   {
-    id: "away-six",
-    x: [700, 652, 600, 630, 680, 700],
-    y: [380, 422, 390, 334, 315, 380],
-    duration: "17s",
+    id: "away-left-pivot",
+    x: [700, 648, 598, 628, 688, 700],
+    y: [438, 470, 442, 390, 392, 438],
+    duration: "22s",
     delay: "-1s",
     radius: 1.75,
     stroke: "oklch(0.809 0.105 251.813)",
   },
   {
-    id: "away-left-eight",
-    x: [590, 535, 485, 510, 565, 590],
-    y: [510, 540, 492, 430, 452, 510],
-    duration: "20s",
+    id: "away-right-pivot",
+    x: [715, 668, 625, 652, 700, 715],
+    y: [322, 288, 318, 368, 370, 322],
+    duration: "21s",
     delay: "-7s",
-    radius: 1.65,
+    radius: 1.75,
+    stroke: "oklch(0.809 0.105 251.813)",
+  },
+  {
+    id: "away-left-wing",
+    x: [505, 450, 380, 410, 475, 505],
+    y: [592, 620, 580, 520, 512, 592],
+    duration: "24s",
+    delay: "-17s",
+    radius: 1.55,
     stroke: "var(--primary)",
   },
   {
-    id: "away-right-eight",
-    x: [575, 500, 445, 475, 540, 575],
-    y: [265, 225, 268, 330, 308, 265],
-    duration: "21s",
+    id: "away-ten",
+    x: [525, 465, 408, 440, 502, 525],
+    y: [380, 422, 386, 330, 336, 380],
+    duration: "19s",
     delay: "-13s",
     radius: 1.65,
     stroke: "var(--primary)",
   },
   {
-    id: "away-left-wing",
-    x: [395, 342, 260, 185, 270, 395],
-    y: [575, 610, 558, 488, 454, 575],
-    duration: "23s",
-    delay: "-17s",
-    radius: 1.55,
-    stroke: "oklch(0.809 0.105 251.813)",
-  },
-  {
-    id: "away-nine",
-    x: [345, 295, 220, 165, 225, 345],
-    y: [382, 430, 398, 350, 308, 382],
-    duration: "18s",
-    delay: "-6s",
-    radius: 1.85,
-    stroke: "var(--primary)",
-  },
-  {
     id: "away-right-wing",
-    x: [380, 324, 242, 170, 252, 380],
-    y: [180, 150, 205, 276, 300, 180],
+    x: [505, 452, 382, 408, 476, 505],
+    y: [168, 142, 178, 236, 248, 168],
     duration: "24s",
     delay: "-20s",
     radius: 1.55,
+    stroke: "var(--primary)",
+  },
+  {
+    id: "away-nine",
+    x: [320, 275, 218, 248, 305, 320],
+    y: [380, 426, 394, 340, 320, 380],
+    duration: "18s",
+    delay: "-6s",
+    radius: 1.85,
     stroke: "oklch(0.809 0.105 251.813)",
   },
 ]
@@ -214,16 +219,16 @@ const homeConnections = [
   [0, 2],
   [0, 3],
   [1, 2],
+  [1, 7],
   [2, 5],
-  [3, 5],
-  [3, 4],
   [5, 6],
-  [5, 7],
-  [6, 8],
-  [6, 9],
-  [7, 9],
-  [7, 10],
+  [5, 8],
+  [8, 7],
+  [8, 10],
   [8, 9],
+  [3, 4],
+  [6, 8],
+  [6, 4],
   [9, 10],
 ]
 
@@ -232,14 +237,68 @@ const awayConnections = homeConnections.map(([from, to]) => [from + 11, to + 11]
 const trackingConnections = [
   ...homeConnections,
   ...awayConnections,
-  [5, 16],
-  [6, 17],
-  [7, 16],
-  [9, 20],
 ]
+
+const homeBallReceivers = [
+  { playerIndex: 0, frameIndex: 0 },
+  { playerIndex: 3, frameIndex: 1 },
+  { playerIndex: 6, frameIndex: 2 },
+  { playerIndex: 8, frameIndex: 3 },
+  { playerIndex: 9, frameIndex: 4 },
+]
+
+const awayBallReceivers = [
+  { playerIndex: 11, frameIndex: 0 },
+  { playerIndex: 13, frameIndex: 1 },
+  { playerIndex: 16, frameIndex: 2 },
+  { playerIndex: 19, frameIndex: 3 },
+  { playerIndex: 18, frameIndex: 4 },
+]
+
+const ballReceivers = [
+  ...homeBallReceivers,
+  ...awayBallReceivers,
+  { playerIndex: 0, frameIndex: 5 },
+]
+
+const ballKeyTimeValues = [
+  ...motionKeyTimeValues.slice(0, -1).map((keyTime) => keyTime / 2),
+  ...motionKeyTimeValues.slice(0, -1).map((keyTime) => 0.5 + keyTime / 2),
+  1,
+]
+
+const ballPath = {
+  x: ballReceivers.map(
+    ({ playerIndex, frameIndex }) => trackingPlayers[playerIndex]!.x[frameIndex]!,
+  ),
+  y: ballReceivers.map(
+    ({ playerIndex, frameIndex }) => trackingPlayers[playerIndex]!.y[frameIndex]!,
+  ),
+  duration: "68s",
+  delay: formationDelay,
+  keyTimes: ballKeyTimeValues.join(";"),
+  keySplines: Array.from(
+    { length: ballKeyTimeValues.length - 1 },
+    () => "0.25 0 0.2 1",
+  ).join(";"),
+}
 
 function values(points: number[]) {
   return points.join(";")
+}
+
+function transformValues(xPoints: number[], yPoints: number[]) {
+  return xPoints.map((x, index) => `${x} ${yPoints[index]}`).join(";")
+}
+
+function playerColor(index: number) {
+  return index < 11 ? homeTeamColor : awayTeamColor
+}
+
+function connectionColor(fromIndex: number, toIndex: number) {
+  if (fromIndex < 11 && toIndex < 11) return homeTeamColor
+  if (fromIndex >= 11 && toIndex >= 11) return awayTeamColor
+  return awayTeamColor
 }
 
 function usePrefersReducedMotion() {
@@ -262,8 +321,6 @@ function usePrefersReducedMotion() {
 
 function Motion({
   attributeName,
-  delay,
-  duration,
   points,
 }: {
   attributeName: "cx" | "cy" | "x1" | "y1" | "x2" | "y2"
@@ -274,13 +331,29 @@ function Motion({
   return (
     <animate
       attributeName={attributeName}
-      begin={delay}
+      begin={formationDelay}
       calcMode="spline"
-      dur={duration}
+      dur={formationDuration}
       keySplines={motionKeySplines}
       keyTimes={motionKeyTimes}
       repeatCount="indefinite"
       values={values(points)}
+    />
+  )
+}
+
+function BallMotion() {
+  return (
+    <animateTransform
+      attributeName="transform"
+      begin={ballPath.delay}
+      calcMode="spline"
+      dur={ballPath.duration}
+      keySplines={ballPath.keySplines}
+      keyTimes={ballPath.keyTimes}
+      repeatCount="indefinite"
+      type="translate"
+      values={transformValues(ballPath.x, ballPath.y)}
     />
   )
 }
@@ -293,7 +366,7 @@ export function TacticalPitchBackground() {
       <div className="absolute inset-0 bg-[linear-gradient(140deg,oklch(0.141_0.005_285.823)_0%,oklch(0.18_0.032_265)_48%,oklch(0.105_0.006_286)_100%)]" />
       <svg
         viewBox="0 0 1200 760"
-        className="absolute left-1/2 top-1/2 h-auto w-[max(1300px,170vh)] -translate-x-1/2 -translate-y-1/2 rotate-[-7deg] opacity-90 sm:w-[min(178vw,1680px)] lg:w-[min(132vw,1760px)] xl:w-[min(122vw,1960px)]"
+        className="absolute left-1/2 top-1/2 h-[max(1180px,150vw)] w-auto -translate-x-1/2 -translate-y-1/2 rotate-[83deg] opacity-90 sm:h-[max(1280px,135vw)] xl:h-auto xl:w-[min(122vw,1960px)] xl:rotate-[-7deg]"
         role="presentation"
       >
         <defs>
@@ -311,7 +384,7 @@ export function TacticalPitchBackground() {
           stroke="oklch(0.809 0.105 251.813 / 0.2)"
           strokeWidth="2"
         >
-          <rect x="80" y="70" width="1040" height="620" rx="6" />
+          <rect x="80" y="70" width="1040" height="620" />
           <path d="M600 70V690" />
           <circle cx="600" cy="380" r="92" />
           <circle
@@ -355,6 +428,7 @@ export function TacticalPitchBackground() {
               <line
                 key={`${from.id}-${to.id}`}
                 className="tracking-connection"
+                style={{ stroke: connectionColor(fromIndex, toIndex) }}
                 x1={from.x[0]}
                 y1={from.y[0]}
                 x2={to.x[0]}
@@ -392,14 +466,34 @@ export function TacticalPitchBackground() {
             )
           })}
 
-          {trackingPlayers.map((player) => (
+          <g transform={`translate(${ballPath.x[0]} ${ballPath.y[0]})`}>
+            {!prefersReducedMotion && (
+              <BallMotion />
+            )}
+            <circle
+              className="tracking-ball-halo"
+              cx="0"
+              cy="0"
+              r="8"
+              fill="oklch(0.97 0.014 254.604)"
+            />
+            <circle
+              className="tracking-ball-core"
+              cx="0"
+              cy="0"
+              r="2.2"
+              fill="oklch(0.97 0.014 254.604)"
+            />
+          </g>
+
+          {trackingPlayers.map((player, index) => (
             <g key={player.id}>
               <circle
                 className="tracking-dot-halo"
                 cx={player.x[0]}
                 cy={player.y[0]}
-                r={player.radius + 3.25}
-                fill={player.stroke}
+                r={player.radius + 3.6}
+                fill={playerColor(index)}
               >
                 {!prefersReducedMotion && (
                   <>
@@ -422,8 +516,8 @@ export function TacticalPitchBackground() {
                 className="tracking-dot-core"
                 cx={player.x[0]}
                 cy={player.y[0]}
-                r={player.radius}
-                fill={player.stroke}
+                r={player.radius + 0.85}
+                fill={playerColor(index)}
               >
                 {!prefersReducedMotion && (
                   <>
