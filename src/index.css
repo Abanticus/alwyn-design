@@ -145,6 +145,9 @@
   .animate-spin-asterisk {
     animation: spin-asterisk 8s linear infinite;
   }
+  .tracking-glow-group {
+    filter: drop-shadow(0 0 4px oklch(0.809 0.105 251.813 / 0.55));
+  }
   .tracking-connection {
     opacity: 0.12;
     stroke: oklch(0.809 0.105 251.813);
@@ -154,10 +157,12 @@
   .tracking-dot-halo {
     animation: tracking-dot-pulse 5.2s ease-in-out infinite;
     opacity: 0.08;
+    will-change: opacity;
   }
   .tracking-dot-core {
     animation: tracking-dot-pulse 5.2s ease-in-out infinite;
     opacity: 0.82;
+    will-change: opacity;
   }
   .tracking-ball-halo {
     opacity: 0.12;

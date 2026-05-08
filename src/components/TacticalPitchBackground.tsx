@@ -366,19 +366,9 @@ export function TacticalPitchBackground() {
       <div className="absolute inset-0 bg-[linear-gradient(140deg,oklch(0.141_0.005_285.823)_0%,oklch(0.18_0.032_265)_48%,oklch(0.105_0.006_286)_100%)]" />
       <svg
         viewBox="0 0 1200 760"
-        className="absolute left-1/2 top-1/2 h-[max(1180px,150vw)] w-auto -translate-x-1/2 -translate-y-1/2 rotate-[83deg] opacity-90 sm:h-[max(1280px,135vw)] xl:h-auto xl:w-[min(122vw,1960px)] xl:rotate-[-7deg]"
+        className="absolute left-1/2 top-1/2 h-[max(1180px,150vw)] w-auto -translate-x-1/2 -translate-y-1/2 rotate-[83deg] opacity-90 will-change-transform sm:h-[max(1280px,135vw)] xl:h-auto xl:w-[min(122vw,1960px)] xl:rotate-[-7deg]"
         role="presentation"
       >
-        <defs>
-          <filter id="data-glow" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-
         <g
           fill="none"
           stroke="oklch(0.809 0.105 251.813 / 0.2)"
@@ -419,7 +409,7 @@ export function TacticalPitchBackground() {
 
         </g>
 
-        <g filter="url(#data-glow)">
+        <g className="tracking-glow-group">
           {trackingConnections.map(([fromIndex, toIndex]) => {
             const from = trackingPlayers[fromIndex]!
             const to = trackingPlayers[toIndex]!
