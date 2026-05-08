@@ -366,7 +366,7 @@ export function TacticalPitchBackground() {
       <div className="absolute inset-0 bg-[linear-gradient(140deg,oklch(0.141_0.005_285.823)_0%,oklch(0.18_0.032_265)_48%,oklch(0.105_0.006_286)_100%)]" />
       <svg
         viewBox="0 0 1200 760"
-        className="absolute left-1/2 top-1/2 h-[max(1180px,150vw)] w-auto -translate-x-1/2 -translate-y-1/2 rotate-[83deg] opacity-90 will-change-transform sm:h-[max(1280px,135vw)] xl:h-auto xl:w-[min(122vw,1960px)] xl:rotate-[-7deg]"
+        className="absolute left-1/2 top-1/2 h-[max(800px,118vw)] w-auto -translate-x-1/2 -translate-y-1/2 rotate-[76deg] opacity-90 will-change-transform sm:h-[max(880px,112vw)] lg:h-auto lg:w-[min(118vw,1800px)] lg:rotate-[-7deg] 2xl:w-[min(108vw,2200px)]"
         role="presentation"
       >
         <g
