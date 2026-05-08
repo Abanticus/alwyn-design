@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom"
 
-// import AppLayout from "./components/AppLayout"
-// import About from "./pages/About"
-// import CaseStudy from "./pages/CaseStudy"
-// import Home from "./pages/Home"
+import AppLayout from "./components/AppLayout"
+import About from "./pages/About"
+import CaseStudy from "./pages/CaseStudy"
+import Home from "./pages/Home"
 
 import HoldingPage from "./pages/HoldingPage"
 
@@ -12,13 +12,11 @@ function App() {
     <Routes>
       <Route path="/" element={<HoldingPage />} />
 
-      {/* Full portfolio routes — uncomment when ready
-      <Route path="/" element={<AppLayout />}>
+      <Route path="/home" element={<AppLayout />}>
         <Route index element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/case-study/:slug" element={<CaseStudy />} />
+        <Route path="about" element={<About />} />
+        <Route path="case-study/:slug" element={<CaseStudy />} />
       </Route>
-      */}
 
       <Route
         path="*"
