@@ -161,7 +161,7 @@
     filter: drop-shadow(0 0 4px oklch(0.809 0.105 251.813 / 0.55));
   }
   .tracking-connection {
-    opacity: 0.12;
+    opacity: 0.28;
     stroke: oklch(0.809 0.105 251.813);
     stroke-linecap: round;
     stroke-width: 0.75;
@@ -189,11 +189,68 @@
   .tracking-ball-core {
     opacity: 0.92;
   }
+  .skill-connection {
+    stroke-width: 0.75;
+    stroke-linecap: round;
+    opacity: 0;
+    animation: skill-fade-in 0.6s ease-out 0s forwards;
+  }
+  .skill-node {
+    opacity: 0;
+    animation: skill-fade-in 0.4s ease-out forwards;
+  }
+  .skill-label {
+    opacity: 0;
+    animation: skill-fade-in 0.4s ease-out forwards;
+  }
+  @keyframes skill-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes radar-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes radar-draw {
+    from { stroke-dashoffset: 620; }
+    to   { stroke-dashoffset: 0; }
+  }
+  .radar-grid {
+    opacity: 0;
+    animation: radar-fade-in 0.5s ease-out 0s forwards;
+  }
+  .radar-label {
+    opacity: 0;
+    animation: radar-fade-in 0.5s ease-out 0.1s forwards;
+  }
+  .radar-stroke {
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+    animation: radar-draw 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+  }
+  .radar-fill {
+    opacity: 0;
+    animation: radar-fade-in 0.6s ease-out 1.6s forwards;
+  }
+  .radar-dot {
+    opacity: 0;
+    animation: radar-fade-in 0.3s ease-out 1.8s forwards;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-spin-asterisk,
     .tracking-dot-halo,
     .tracking-dot-core,
     .tracking-ball-halo {
+      animation: none;
+    }
+    .radar-grid, .radar-label, .radar-fill, .radar-dot {
+      opacity: 1;
+      animation: none;
+    }
+    .radar-stroke {
+      stroke-dashoffset: 0;
       animation: none;
     }
   }

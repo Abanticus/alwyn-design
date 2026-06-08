@@ -123,8 +123,8 @@ const trackingPlayers = [
   },
   {
     id: "home-nine",
-    x: [880, 925, 982, 952, 895, 880],
-    y: [380, 334, 366, 420, 440, 380],
+    x: [830, 895, 968, 940, 872, 830],
+    y: [380, 334, 362, 418, 440, 380],
     duration: "42s",
     delay: "-29s",
     radius: 1.85,
@@ -222,8 +222,8 @@ const trackingPlayers = [
   },
   {
     id: "away-nine",
-    x: [320, 275, 218, 248, 305, 320],
-    y: [380, 426, 394, 340, 320, 380],
+    x: [370, 295, 215, 250, 318, 370],
+    y: [380, 426, 392, 338, 318, 380],
     duration: "42s",
     delay: "-8s",
     radius: 1.85,
@@ -303,10 +303,6 @@ function values(points: number[]) {
 
 function transformValues(xPoints: number[], yPoints: number[]) {
   return xPoints.map((x, index) => `${x} ${yPoints[index]}`).join(";")
-}
-
-function playerColor(index: number, homeTeam: string, awayTeam: string) {
-  return index < 11 ? homeTeam : awayTeam
 }
 
 
@@ -483,17 +479,10 @@ export function TacticalPitchBackground({
               <BallMotion />
             )}
             <circle
-              className="tracking-ball-halo"
-              cx="0"
-              cy="0"
-              r="5"
-              fill={colors.ball}
-            />
-            <circle
               className="tracking-ball-core"
               cx="0"
               cy="0"
-              r="2.2"
+              r="5"
               fill={colors.ball}
             />
           </g>
@@ -503,8 +492,10 @@ export function TacticalPitchBackground({
               <circle
                 cx={player.x[0]}
                 cy={player.y[0]}
-                r={player.radius + 0.85}
-                fill={playerColor(index, colors.homeTeam, colors.awayTeam)}
+                r={10}
+                fill={index < 11 ? colors.homeTeam : "none"}
+                stroke={index >= 11 ? colors.awayTeam : "none"}
+                strokeWidth={index >= 11 ? "1.5" : "0"}
               >
                 {!prefersReducedMotion && (
                   <>
