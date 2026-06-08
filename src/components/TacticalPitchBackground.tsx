@@ -6,6 +6,7 @@ const colorSchemes = {
   dark: {
     homeTeam: "oklch(0.424 0.199 265.638)",
     awayTeam: "oklch(0.809 0.105 251.813)",
+    awayBackground: "var(--background)",
     pitchStroke: "oklch(0.809 0.105 251.813 / 0.2)",
     pitchAccent: "oklch(0.809 0.105 251.813)",
     ball: "oklch(0.97 0.014 254.604)",
@@ -14,6 +15,7 @@ const colorSchemes = {
   light: {
     homeTeam: "var(--tp-home-team)",
     awayTeam: "var(--tp-away-team)",
+    awayBackground: "var(--background)",
     pitchStroke: "var(--tp-pitch-stroke)",
     pitchAccent: "var(--tp-pitch-accent)",
     ball: "var(--tp-ball)",
@@ -493,7 +495,7 @@ export function TacticalPitchBackground({
                 cx={player.x[0]}
                 cy={player.y[0]}
                 r={10}
-                fill={index < 11 ? colors.homeTeam : "none"}
+                fill={index < 11 ? colors.homeTeam : colors.awayBackground}
                 stroke={index >= 11 ? colors.awayTeam : "none"}
                 strokeWidth={index >= 11 ? "1.5" : "0"}
               >
