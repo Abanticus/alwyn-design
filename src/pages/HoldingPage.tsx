@@ -21,7 +21,7 @@ function HoldingPage() {
         <TacticalPitchBackground
           showBackground={false}
           variant="light"
-          svgClassName="absolute left-1/2 top-1/2 h-auto -translate-x-1/2 -translate-y-1/2 will-change-transform rotate-90 w-[126vw] md:rotate-0 md:w-[80%]"
+          svgClassName="absolute left-1/2 top-1/2 h-auto -translate-x-1/2 -translate-y-1/2 will-change-transform rotate-90 w-[160vw] md:rotate-0 md:w-[80%]"
         />
       </div>
 
