@@ -14,8 +14,7 @@ function HoldingPage() {
 
   return (
     <div
-      className="dark relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden"
-      style={{ backgroundColor: "#13141c" }}
+      className="dark relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden bg-background"
     >
       <div className="absolute inset-0">
         <TacticalPitchBackground
