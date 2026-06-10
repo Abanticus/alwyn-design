@@ -1,38 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg
-  id="Layer_1"
-  data-name="Layer 1"
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 200 200"
->
-  <defs>
-    <style>
-      .logo-base {
-        fill: #0f172a;
-      }
-
-      .logo-accent {
-        fill: #3b82f6;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .logo-base {
-          fill: #f8fafc;
-        }
-
-        .logo-accent {
-          fill: #3b82f6;
-        }
-      }
-    </style>
-  </defs>
-
-  <path
-    class="logo-base"
-    d="M0,200L84.96,0h36.31L36.31,200H0Z"
-  />
-  <polygon
-    class="logo-accent"
-    points="200 127.21 188.73 107.53 157.57 126.97 157.57 88.05 135.42 88.05 135.42 126.97 104.27 107.53 92.99 127.21 126.89 144.06 92.99 160.84 104.27 180.52 135.42 161.14 135.42 200 157.57 200 157.57 161.14 188.73 180.52 200 160.84 166.11 144.06 200 127.21"
-  />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <style>
+    .b { fill: #0f172a }
+    .a { fill: #3b82f6 }
+    @media (prefers-color-scheme: dark) {
+      .b { fill: #f8fafc }
+    }
+  </style>
+  <path class="b" d="M0,200L84.96,0h36.31L36.31,200H0Z"/>
+  <polygon class="a" points="200 127.21 188.73 107.53 157.57 126.97 157.57 88.05 135.42 88.05 135.42 126.97 104.27 107.53 92.99 127.21 126.89 144.06 92.99 160.84 104.27 180.52 135.42 161.14 135.42 200 157.57 200 157.57 161.14 188.73 180.52 200 160.84 166.11 144.06 200 127.21"/>
 </svg>
