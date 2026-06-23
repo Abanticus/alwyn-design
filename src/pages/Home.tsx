@@ -1,27 +1,50 @@
 import { Link } from "react-router-dom"
-
 import { Badge } from "@/components/ui/badge"
+import TypewriterText from "@/components/TypewriterText"
+import LogoLoop from "@/components/LogoLoop"
 import { TacticalPitchBackground } from "@/components/TacticalPitchBackground"
 import { caseStudies } from "../data/caseStudies"
+
+const skills = [
+  "UX Design",
+  "Figma",
+  "Prototyping",
+  "User Research",
+  "Data Visualisation",
+  "Design Systems",
+  "Interaction Design",
+  "Product Strategy",
+  "Wireframing",
+  "Usability Testing",
+].map((s) => ({
+  node: <span className="inline-flex items-center rounded-full border border-border bg-card px-3 py-1 text-sm font-medium text-foreground">{s}</span>,
+  title: s,
+}))
 
 function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <header>
-        <div className="mx-auto grid max-w-5xl items-center gap-10 px-6 py-16 lg:grid-cols-[3fr_2fr] lg:py-20">
-          <div className="space-y-5">
-            <h1 className="text-5xl font-medium leading-tight tracking-tight sm:text-6xl">
-              Designing <span className="text-primary">digital products</span>{" "}
-              that simplify complex workflows in{" "}
-              <span className="text-primary">elite football</span>
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-16 lg:grid-cols-[3fr_2fr] lg:py-20">
+          <div className="min-w-0 space-y-6 lg:-mt-12">
+            <h1 className="text-4xl font-medium leading-snug tracking-tight sm:text-5xl">
+              I'm Alwyn, a Product Designer<br />at Aston Villa building tools for<br />
+              <span className="mt-3 inline-block"><TypewriterText
+                texts={["Data", "Performance", "Management", "Coaching", "Administration", "Scouting", "Research"]}
+                className="bg-primary text-primary-foreground px-3 py-1 rounded-lg text-4xl font-medium sm:text-5xl align-middle leading-none"
+                typingSpeed={80}
+                deletingSpeed={40}
+                pauseDuration={2000}
+              /></span>
             </h1>
-            <p className="text-base leading-7 text-muted-foreground sm:text-lg">
-              I&apos;m Alwyn, a Product Designer with 15+ years of design
-              experience, currently leading UX and UI for internal football
-              operations tools at Aston Villa. I combine strong visual craft
-              with research, prototyping and systems thinking to create
-              intuitive digital experiences.
+            <p className="max-w-lg text-base leading-7 text-muted-foreground">
+              I work in the Football Research &amp; Strategy team, designing internal products that help the club make informed decisions about football operations.
             </p>
+            <div className="relative mt-10 overflow-hidden">
+              <LogoLoop logos={skills} speed={50} gap={32} logoHeight={14} pauseOnHover />
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent" />
+            </div>
           </div>
 
           <div className="relative hidden aspect-[760/1200] w-full overflow-hidden lg:block">
@@ -34,7 +57,7 @@ function Home() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-5xl space-y-14 px-6 py-16">
+      <div className="mx-auto max-w-6xl space-y-14 px-6 py-16">
         <section className="space-y-5">
           <div className="grid gap-4 sm:grid-cols-2">
             {caseStudies.map((study) => (
@@ -52,7 +75,7 @@ function Home() {
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">
                   {study.cardSummary}
                 </p>
-                <Badge className="mt-4 bg-primary text-primary-foreground hover:bg-primary">
+                <Badge className="mt-4 bg-primary font-mono text-primary-foreground hover:bg-primary">
                   {study.type}
                 </Badge>
               </Link>

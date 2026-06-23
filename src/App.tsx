@@ -5,17 +5,17 @@ import About from "./pages/About"
 import CaseStudy from "./pages/CaseStudy"
 import Home from "./pages/Home"
 
-import HoldingPage from "./pages/HoldingPage"
+// import HoldingPage from "./pages/HoldingPage"
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HoldingPage />} />
+      {/* <Route path="/" element={<HoldingPage />} /> */}
 
-      <Route path="/home" element={<AppLayout />}>
+      <Route path="/" element={<AppLayout />}>
         <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="case-study/:slug" element={<CaseStudy />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/case-study/:slug" element={<CaseStudy />} />
       </Route>
 
       <Route

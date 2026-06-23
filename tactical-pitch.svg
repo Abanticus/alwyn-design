@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="presentation">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e0f16"/>
+      <stop offset="48%" stop-color="#141929"/>
+      <stop offset="100%" stop-color="#090a10"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="50%">
+      <stop offset="36%" stop-color="transparent"/>
+      <stop offset="76%" stop-color="#0e0f16" stop-opacity="0.58"/>
+      <stop offset="100%" stop-color="#0e0f16"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="760" fill="url(#bg)"/>
+
+  <!-- Pitch markings -->
+  <g fill="none" stroke="#7eb8f0" stroke-opacity="0.2" stroke-width="2">
+    <rect x="80" y="70" width="1040" height="620"/>
+    <path d="M600 70V690"/>
+    <circle cx="600" cy="380" r="92"/>
+    <circle cx="600" cy="380" r="4" fill="#7eb8f0" fill-opacity="0.26" stroke="none"/>
+    <path d="M80 230H238V530H80"/>
+    <path d="M80 300H142V460H80"/>
+    <circle cx="198" cy="380" r="4" fill="#7eb8f0" fill-opacity="0.24" stroke="none"/>
+    <path d="M238 286a118 118 0 0 1 0 188"/>
+    <path d="M1120 230H962V530H1120"/>
+    <path d="M1120 300H1058V460H1120"/>
+    <circle cx="1002" cy="380" r="4" fill="#7eb8f0" fill-opacity="0.24" stroke="none"/>
+    <path d="M962 286a118 118 0 0 0 0 188"/>
+  </g>
+
+  <!-- Connection lines -->
+  <g stroke="#6b7f8f" stroke-opacity="0.12" stroke-width="0.75" stroke-linecap="round" fill="none">
+    <!-- Home connections -->
+    <line x1="160" y1="380" x2="330" y2="155"/>
+    <line x1="160" y1="380" x2="315" y2="305"/>
+    <line x1="160" y1="380" x2="315" y2="455"/>
+    <line x1="160" y1="380" x2="330" y2="605"/>
+    <line x1="330" y1="155" x2="315" y2="305"/>
+    <line x1="315" y1="305" x2="315" y2="455"/>
+    <line x1="315" y1="455" x2="330" y2="605"/>
+    <line x1="330" y1="155" x2="485" y2="322"/>
+    <line x1="315" y1="305" x2="485" y2="322"/>
+    <line x1="315" y1="455" x2="500" y2="438"/>
+    <line x1="330" y1="605" x2="500" y2="438"/>
+    <line x1="485" y1="322" x2="500" y2="438"/>
+    <line x1="485" y1="322" x2="695" y2="168"/>
+    <line x1="485" y1="322" x2="675" y2="380"/>
+    <line x1="500" y1="438" x2="675" y2="380"/>
+    <line x1="500" y1="438" x2="880" y2="380"/>
+    <line x1="695" y1="168" x2="675" y2="380"/>
+    <line x1="695" y1="168" x2="695" y2="592"/>
+    <line x1="675" y1="380" x2="695" y2="592"/>
+    <line x1="675" y1="380" x2="880" y2="380"/>
+    <line x1="695" y1="592" x2="880" y2="380"/>
+    <!-- Away connections -->
+    <line x1="1040" y1="380" x2="870" y2="605"/>
+    <line x1="1040" y1="380" x2="885" y2="455"/>
+    <line x1="1040" y1="380" x2="885" y2="305"/>
+    <line x1="1040" y1="380" x2="870" y2="155"/>
+    <line x1="870" y1="605" x2="885" y2="455"/>
+    <line x1="885" y1="455" x2="885" y2="305"/>
+    <line x1="885" y1="305" x2="870" y2="155"/>
+    <line x1="870" y1="605" x2="700" y2="438"/>
+    <line x1="885" y1="455" x2="700" y2="438"/>
+    <line x1="885" y1="305" x2="715" y2="322"/>
+    <line x1="870" y1="155" x2="715" y2="322"/>
+    <line x1="700" y1="438" x2="715" y2="322"/>
+    <line x1="700" y1="438" x2="505" y2="592"/>
+    <line x1="700" y1="438" x2="525" y2="380"/>
+    <line x1="715" y1="322" x2="525" y2="380"/>
+    <line x1="715" y1="322" x2="320" y2="380"/>
+    <line x1="505" y1="592" x2="525" y2="380"/>
+    <line x1="505" y1="592" x2="505" y2="168"/>
+    <line x1="525" y1="380" x2="505" y2="168"/>
+    <line x1="525" y1="380" x2="320" y2="380"/>
+    <line x1="505" y1="168" x2="320" y2="380"/>
+  </g>
+
+  <!-- Home team players (dark blue) -->
+  <g fill="#1a3d6e">
+    <circle cx="160"  cy="380" r="5"/>
+    <circle cx="330"  cy="155" r="5"/>
+    <circle cx="315"  cy="305" r="5"/>
+    <circle cx="315"  cy="455" r="5"/>
+    <circle cx="330"  cy="605" r="5"/>
+    <circle cx="485"  cy="322" r="5"/>
+    <circle cx="500"  cy="438" r="5"/>
+    <circle cx="695"  cy="168" r="5"/>
+    <circle cx="675"  cy="380" r="5"/>
+    <circle cx="695"  cy="592" r="5"/>
+    <circle cx="880"  cy="380" r="5"/>
+  </g>
+
+  <!-- Away team players (light blue) -->
+  <g fill="#7eb8f0">
+    <circle cx="1040" cy="380" r="5"/>
+    <circle cx="870"  cy="605" r="5"/>
+    <circle cx="885"  cy="455" r="5"/>
+    <circle cx="885"  cy="305" r="5"/>
+    <circle cx="870"  cy="155" r="5"/>
+    <circle cx="700"  cy="438" r="5"/>
+    <circle cx="715"  cy="322" r="5"/>
+    <circle cx="505"  cy="592" r="5"/>
+    <circle cx="525"  cy="380" r="5"/>
+    <circle cx="505"  cy="168" r="5"/>
+    <circle cx="320"  cy="380" r="5"/>
+  </g>
+
+  <!-- Ball -->
+  <circle cx="160" cy="380" r="8" fill="#f5f7ff" opacity="0.08"/>
+  <circle cx="160" cy="380" r="3" fill="#f5f7ff" opacity="0.92"/>
+
+  <!-- Vignette overlay -->
+  <rect width="1200" height="760" fill="url(#vignette)"/>
+</svg>

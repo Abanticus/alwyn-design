@@ -1,3 +1,11 @@
+import type React from "react"
+import PlayerDataTable from "@/components/demos/PlayerDataTable"
+
+export type CaseStudySection = {
+  title: string
+  body: string
+}
+
 export type CaseStudy = {
   slug: string
   title: string
@@ -9,23 +17,40 @@ export type CaseStudy = {
   role: string
   challenge: string
   outcome: string
+  sections?: CaseStudySection[]
+  demo?: React.ComponentType
 }
 
 export const caseStudies: CaseStudy[] = [
   {
     slug: "villa-data",
-    title: "Villa Data",
+    title: "Data Linking",
     type: "Case Study",
-    cardSummary: "A single source of truth for football operations.",
+    cardSummary: "A single source of truth for football intelligence at Aston Villa.",
     summary:
-      "Designing an internal tool that brings together multiple data sources into a single, reliable system for club-wide decision-making.",
+      "Villa Hub is Aston Villa's internal football intelligence platform, built for the strategy and research team to manage and connect data from multiple providers including Transfermarkt and Stats Perform, across players, teams, competitions, associations, fixtures, and more.",
     client: "Aston Villa",
     year: "2026",
     role: "Lead Product Design",
     challenge:
-      "Create a data product that helps teams interpret complex performance information quickly and confidently.",
+      "Each data provider maintains its own player records with distinct IDs and naming conventions. Without a canonical identifier, the same player exists as separate unlinked rows — one per source — with no way to connect or compare them.",
     outcome:
       "Delivered a more usable data experience with clearer hierarchy, improved workflows, and better decision support.",
+    sections: [
+      {
+        title: "The Challenge",
+        body: "The club ingests player data from up to ten external providers simultaneously. Each source maintains its own records with distinct IDs and naming conventions — without a canonical AV identifier, the same player exists as separate unlinked rows with no way to connect or compare them. Some players already have an AV ID but no external links yet; others exist only in a provider's dataset and haven't been registered at all. The linking UI needed to make these different states legible at a glance and give data engineers a clear path to resolve them.",
+      },
+      {
+        title: "The Flow",
+        body: "Selecting records from any data table opens a drag-and-drop modal where source datasets are assigned to a target entity. A second step provides field-level merge control — a side-by-side Keep/Delete view lets data engineers choose which values carry forward before applying changes.",
+      },
+      {
+        title: "Key Decisions",
+        body: "Provider IDs are colour-coded for quick orientation. The two-step flow separates what belongs together from what data wins, keeping each decision focused. Conflict indicators surface data quality issues in context.",
+      },
+    ],
+    demo: PlayerDataTable,
   },
   {
     slug: "villa-scouting",

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { AnimatePresence, motion } from "motion/react"
 import { Menu, Moon, Sun, X } from "lucide-react"
 import { NavLink } from "react-router-dom"
 
@@ -29,8 +30,8 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-40 px-4 pt-4 sm:px-6">
       <div
-        className={`mx-auto max-w-6xl border border-border/70 bg-background/88 backdrop-blur transition-all ${
-          isOpen ? "rounded-3xl" : "rounded-3xl md:rounded-full"
+        className={`mx-auto max-w-6xl border border-border/70 bg-background/88 backdrop-blur ${
+          isOpen ? "rounded-3xl" : "rounded-full"
         }`}
       >
         <div className="flex h-16 items-center justify-between gap-4 px-4 sm:h-18 sm:gap-6 sm:px-6">
@@ -106,30 +107,40 @@ function Navbar() {
           </div>
         </div>
 
-        {isOpen && (
-          <div className="border-t border-border/80 px-4 pb-4 pt-3 md:hidden">
-            <nav className="flex flex-col gap-2">
-              {navItems.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  end={item.end}
-                  onClick={closeMenu}
-                  className={({ isActive }) =>
-                    `rounded-full px-4 py-2 text-sm font-medium transition ${
-                      isActive
-                        ? "bg-muted text-foreground"
-                        : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
-                    }`
-                  }
-                >
-                  {item.label}
-                </NavLink>
-              ))}
-
-            </nav>
-          </div>
-        )}
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              key="mobile-menu"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              className="overflow-hidden md:hidden"
+            >
+              <div className="border-t border-border/80 px-4 pb-4 pt-3">
+                <nav className="flex flex-col gap-2">
+                  {navItems.map((item) => (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      end={item.end}
+                      onClick={closeMenu}
+                      className={({ isActive }) =>
+                        `rounded-full px-4 py-2 text-sm font-medium transition ${
+                          isActive
+                            ? "bg-muted text-foreground"
+                            : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
+                        }`
+                      }
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                </nav>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   )
